@@ -11,7 +11,11 @@ export type SignalType =
   | 'Hiring Tech Roles'
   | 'Hiring Ops / Support / HR'
   | 'Scaling / Growth Announcements'
-  | 'Outdated Website';
+  | 'Outdated Website'
+  | 'Low Digital Presence'
+  | 'Needs Digital Presence'
+  | 'Digital Transformation'
+  | 'High-Growth Industry';
 
 export interface Lead {
   id: string;

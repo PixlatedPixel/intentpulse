@@ -1,0 +1,101 @@
+company_name,website,linkedin_url,industry,location,employees,has_funding
+ICICI Lombard,https://www.icicilombard.com/,https://in.linkedin.com/company/icici-lombard,Insurance,Mumbai,5000-10000,no
+Urban Company,https://www.urbancompany.com,https://in.linkedin.com/company/urbancompany,Internet,Mumbai,1000-5000,yes
+Caremother,https://caremother.in/,https://www.linkedin.com/company/caremother,Medical devices and equipment,Mumbai,11-50,yes
+Talentcorp Solutions Pvt Ltd,https://www.tsplgroup.in,https://www.linkedin.com/company/tsplgroup,Human resources services,Pune,201-500,no
+Razorpay,https://razorpay.com,https://www.linkedin.com/company/razorpay,FinTech,Mumbai,1000-5000,yes
+Mypcot Infotech,https://www.mypcot.com,https://www.linkedin.com/company/mypcot-infotech-pvt-ltd,IT services and consulting,Mumbai,51-200,no
+Techniche Imunita,http://www.techniche-imunita.com/,https://www.linkedin.com/company/techniche-imunita-pvt-ltd,Fitness and wellness,Pune,11-50,no
+Cybage,https://www.cybage.com,https://www.linkedin.com/company/cybage,IT services and consulting,Pune,5000-10000,no
+Zensar,https://www.zensar.com,https://www.linkedin.com/company/zensar-technologies,IT services and consulting,Pune,10000+,no
+eClerx,https://www.eclerx.com,https://www.linkedin.com/company/eclerx,Business Process Management,Mumbai,10000+,no
+Tata Consultancy Services,https://www.tcs.com,https://www.linkedin.com/company/tata-consultancy-services,IT services and consulting,Mumbai,10000+,no
+Infosys,https://www.infosys.com,https://www.linkedin.com/company/infosys,IT services ,Pune,10000+,no
+Wipro,https://www.wipro.com,https://www.linkedin.com/company/wipro,IT services,Mumbai,10000+,no
+Capgemini,https://www.capgemini.com,https://www.linkedin.com/company/capgemini,IT consulting,Mumbai,10000+,no
+Cognizant,https://www.cognizant.com,https://www.linkedin.com/company/cognizant,IT services,Pune,10000+,no
+Tech Mahindra,https://www.techmahindra.com,https://www.linkedin.com/company/tech-mahindra,IT services ,Pune,10000+,no
+Mindtree (LTIMindtree),https://www.ltimindtree.com,https://www.linkedin.com/company/ltimindtree,IT services,Mumbai,10000+,no
+Reliance Industries,https://www.ril.com,https://www.linkedin.com/company/reliance,Conglomerate,Mumbai,10000+,no
+Larsen & Toubro,https://www.larsentoubro.com,https://www.linkedin.com/company/larsen-&-toubro-limited,Engineering & Construction,Mumbai,10000+,no
+Bajaj Finserv,https://www.bajajfinserv.in,https://www.linkedin.com/company/bajaj-finserv,Financial Services,Pune,10000+,no
+BookMyShow,https://in.bookmyshow.com,https://www.linkedin.com/company/bookmyshow,Entertainment / Ticketing ,Mumbai,1000-5000,yes
+Fractal Analytics,https://fractal.ai,https://www.linkedin.com/company/fractal-analytics,Business Consulting and Services,Mumbai,5000-10000,yes
+PharmEasy,https://pharmeasy.in,https://www.linkedin.com/company/pharmeasy/,"Health, Wellness and Fitness",Mumbai,1000-5000,yes
+Dream11,https://www.dream11.com,https://www.linkedin.com/company/dream11/,"Technology, Information and Media",Mumbai,201-500,yes
+LenDenClub,https://www.lendenclub.com,https://www.linkedin.com/company/lenden-club/,Financial Services,Mumbai,201-500,yes
+CASHe,https://www.cashe.co.in,https://www.linkedin.com/company/cashe-app/,Financial Services,Mumbai,201-500,yes
+MyGlamm,https://www.myglamm.com,https://www.linkedin.com/company/myglamm/,"Technology, Information and Internet",Mumbai,501-1000,yes
+Good Glamm Group,https://www.goodglamm.com,https://www.linkedin.com/company/goodglammgroup/,Consumer Goods,Mumbai,1000-5000,yes
+Pepperfry,https://www.pepperfry.com,https://www.linkedin.com/company/pepperfry/,E-Commerce,Mumbai,501-1000,yes
+Rebel Foods,https://www.rebelfoods.com,https://www.linkedin.com/company/rebel-foods/,Cloud Kitchen,Mumbai,5000-10000,yes
+Zepto,https://www.zeptonow.com,https://www.linkedin.com/company/zeptonow/,"Technology, Information and Internet",Mumbai,5000-10000,yes
+CleverTap,https://clevertap.com,https://www.linkedin.com/company/clevertap/,"Technology, Information and Internet",Mumbai,501-1000,yes
+MSwipe,https://www.mswipe.com,https://www.linkedin.com/company/mswipe/,Financial Services,Mumbai,1000-5000,yes
+Xpressbees,https://www.xpressbees.com,https://www.linkedin.com/company/xpressbees/,Logistics and Supply Chain,Pune,10000+,yes
+Altizon,https://www.altizon.com,https://www.linkedin.com/company/altizon/,Industrial IoT,Pune,51-200,yes
+MindTickle ,https://www.mindtickle.com,https://www.linkedin.com/company/mindtickle/,Software Development,Pune,501-1000,yes
+PubMatic,https://www.pubmatic.com,https://www.linkedin.com/company/pubmatic/,Advertising Technology,Pune,501-1000,yes
+Durva ,https://www.druva.com,https://www.linkedin.com/company/druva/,Software Development,Pune,1000-5000,yes
+Tork Motors,https://www.torkmotors.com,https://www.linkedin.com/company/tork-motors-pvt-ltd/,Automotive,Pune,201-500,yes
+Fibe India,https://www.fibe.in,https://www.linkedin.com/company/fibe-in/,Financial Services,Pune,501-1000,yes
+ElasticRun,https://www.elastic.run,https://www.linkedin.com/company/elasticrun/,Logistics and Supply Chain,Pune,1000-5000,yes
+credAble ,https://www.credable.in,https://www.linkedin.com/company/credable.in/,Financial Services,Mumbai,201-500,yes
+Harbinger Group,https://www.harbingergroup.com,https://www.linkedin.com/company/harbinger-group/,IT services and consulting,Pune,501-1000,no
+Sarvatra Technologies,https://www.sarvatra.com,https://www.linkedin.com/company/sarvatra-technologies/,Financial Technology,Pune,501-1000,no
+Pinnacle Teleservices,https://www.pinnacle.in,https://www.linkedin.com/company/pinnacle-teleservices-pvt-ltd/,"Technology, Information and Internet",Nagpur,201-500,no
+Talent Corner HR Services,https://www.talentcorner.in,https://www.linkedin.com/company/talent-corner-hr-services-pvt-ltd/,Business Consulting and Services,Mumbai ,51-200,no
+Orangebits,https://www.orangebitsindia.com,https://www.linkedin.com/company/orangebitsindia/,Information Technology and Services,Nagpur,51-200,no
+Netwin Infosolutions,https://www.netwininfosolutions.com,https://www.linkedin.com/company/netwininfosolutions/,Information Technology and Services,Nashik,201-500,no
+Eros Technologies,https://www.erostechnologies.com,https://www.linkedin.com/company/eros-technologies-inc/,Human resources services,Nagpur,201-500,no
+Technocraft Solutions,https://www.technocraftgroup.com,https://www.linkedin.com/company/technocraft-solutions/,IT Services and Consulting,Mumbai,201-500,no
+Binary Semantics,https://www.binarysemantics.com,https://www.linkedin.com/company/binary-semantics-ltd./,IT Services and Consulting,Nagpur,1000-5000,no
+NextGen Invent Corporation |,https://www.nextgeninvent.com,https://www.linkedin.com/company/nextgen-invent-corporation/,IT Services and Consulting,Nagpur,201-500,no
+Sumago Infotech,https://www.sumagoinfotech.com,https://www.linkedin.com/company/sumago-infotech-pvt-ltd/,IT Services and Consulting,Nashik,51-200,no
+Winjit Technologies,https://www.winjit.com,https://www.linkedin.com/company/winjit-technologies/,IT Services and Consulting,Nashik,501-1000,no 
+ESDS Software Solution,https://www.esds.co.in,https://www.linkedin.com/company/esdsdc/,IT Services and Consulting,Nashik,501-1000,yes
+Aress Software,https://www.aress.com,https://www.linkedin.com/company/aress-software/,IT Services and Consulting,Nashik,501-1000,no
+Datamatics,https://www.datamatics.com,https://www.linkedin.com/company/datamatics/,IT Services and Consulting,Nashik,10000+,no
+WNS Global Services,https://www.wns.com,https://www.linkedin.com/company/wns-global-services/,Business Consulting and Services,Mumbai,10000+,yes
+Hexaware Technologies,https://www.hexaware.com,https://www.linkedin.com/company/hexaware-technologies/,IT Services and Consulting,Mumbai,10000+,yes
+Webwing Technologies,https://www.webwingtechnologies.com,https://www.webwingtechnologies.com,Information Technology and Services,Nashik,51-200,no
+Samarth Softech,https://samarthsoftech.com,https://www.linkedin.com/company/samarth-softech-solution-pvt-ltd/,IT Services and Consulting,Nashik,51-200,no
+Endurance Technologies,https://www.endurancegroup.com,https://www.linkedin.com/company/endurance-technologies-pvt.-ltd./,Automotive Manufacturing,Aurangabad,1000-5000,no
+Garware Technical Fibres,https://www.garwarefibres.com,https://www.linkedin.com/company/garware-technical-fibres/,Textile Manufacturing,Pune,1000-5000,no
+Varroc,https://www.varroc.com,https://www.linkedin.com/company/varroc-global/,Automotive Manufacturing,Aurangabad,5000-10000,no
+Siemens,https://www.linkedin.com/company/ecom-express-ltd/?originalSubdomain=in,https://www.linkedin.com/company/siemens/,Automation Machinery Manufacturing,Nagpur,10000+,no
+Pratiti Technologies,https://www.pratititech.com,https://www.linkedin.com/company/pratiti-technologies/,IT Services and Consulting,Pune,201-500,no
+Quess Crop,https://www.quesscorp.com,https://www.linkedin.com/company/quess-corp/,Staffing and Recruiting,Mumbai,10000+,yes
+Udaan,https://www.udaan.com,https://www.linkedin.com/company/udaan/,Logistics ,Mumbai,1000-5000,yes
+Swiggy,https://www.swiggy.com,https://www.linkedin.com/company/swiggy-in/,Logistics,Mumbai,10000+,yes
+Delhivery,https://www.delhivery.com,https://www.linkedin.com/company/delhivery/,Logistics and Supply Chain,Mumbai,10000+,yes
+Ecom Express,https://www.ecomexpress.in,https://www.linkedin.com/company/ecom-express-ltd/,Logistics and Supply Chain,Mumbai,10000+,yes
+Rivigo,https://www.rivigo.com,https://www.linkedin.com/company/rivigo/,Logistics and Supply Chain,Mumbai,1000-5000,yes
+Safeexpress,https://www.safexpress.com,https://www.linkedin.com/company/safexpress-pvt-ltd/,Logistics and Supply Chain,Mumbai,1000-5000,no
+DHL Supply Chain,https://www.dhl.com,https://www.linkedin.com/company/dhl-supply-chain/,Logistics and Supply Chain,Nagpur,10000+,no
+TVS Supply Chain Solutions,https://www.tvsscs.com,https://www.linkedin.com/company/tvs-supply-chain-solutions-corporate/,Logistics and Supply Chain,Mumbai,10000+,yes
+Blue Dart,https://www.bluedart.com,https://www.linkedin.com/company/bluedart/,Logistics and Supply Chain,Mumbai,10000+,no
+Shree Infotech,https://www.shreeinfotech.net,https://www.linkedin.com/company/shree-infotech/,IT Services,Pune,11-50,no
+Sankalp,https://www.sankalptechnologies.com,https://www.linkedin.com/company/sankalp-technologies/,IT Services and Consulting,Pune,51-200,no
+Brightlink Info Technologies,https://www.brightlinkinfotech.com,https://www.linkedin.com/company/brightlink-info-technologies-pvt-ltd/,IT Services and Consulting,Pune,51-200,no
+Techlia Global Services,https://www.techilaservices.com,https://www.linkedin.com/company/techila-global-services/,IT Services,Mumbai,1000-5000,no
+Suma Soft,https://www.sumasoft.com,https://www.linkedin.com/company/suma-soft-pvt-ltd/,IT Services and Consulting,Pune,1000-5000,no
+NeoSOFT,https://www.neosofttech.com,https://www.linkedin.com/company/neosoft-technologies/,IT Services and Consulting,Mumbai,1000-5000,no
+Sphinx Solutions,https://www.sphinx-solution.com,https://www.linkedin.com/company/sphinx-solution/,IT Services and Consulting,Pune,201-500,no
+Coditas,https://www.coditas.com,https://www.linkedin.com/company/coditas/,IT Services and Consulting,Pune,501-1000,no
+Josh Software,https://www.joshsoftware.com,https://www.linkedin.com/company/josh-software/,IT Services and Consulting,Pune,201-500,no
+Intangles,https://www.intangles.ai,https://www.linkedin.com/company/intangles/,"Technology, Information and Internet",Pune,201-500,yes
+SK Logistics,https://skgroup.one,https://www.linkedin.com/company/sklogistics/,Logistics and Supply Chain,Bhiwandi,51-200,no
+ARK Supply Chain,https://arksupplychain.com,https://www.linkedin.com/company/ark-supply-chain-solutions-pvt-ltd/,Logistics and Supply Chain,Mumbai,501-1000,no
+OM Software,https://www.omsoftware.net,https://www.linkedin.com/company/om-software-pvt-ltd/,IT Services and Consulting,Pune,51-200,no
+Parekh Group,https://www.parekhgroup.in,https://www.linkedin.com/company/parekh-group/,Logistics and Supply Chain,Mumbai,1000-5000,no
+Kale Logistics Solutions,https://www.kalelogistics.com,https://www.linkedin.com/company/kale-logistics-solutions/,Logistics and Supply Chain,Mumbai,201-500,yes
+Magenta Mobility,https://magentamobility.com/,https://www.linkedin.com/company/magentamobility,Logistics and Supply Chain,Mumbai,201-500,yes
+Celcius Logistics,https://celcius.in/,https://www.linkedin.com/company/celcius-logistics/,Logistics and Supply Chain,Mumbai,51-200,yes
+Globus Logisys,http://www.globuslogisys.com/,https://www.linkedin.com/company/globus-logisys-pvt-ltd/,Logistics and Supply Chain,Mumbai,201-500,no
+Lee & Muirhead,https://www.lee-muirhead.com/,https://www.linkedin.com/company/lee-&-muirhead-pvt-ltd/,Logistics and Supply Chain,Mumbai,501-1000,no
+Liladhar Pasoo,https://www.liladharpasoo.com/,https://www.linkedin.com/company/liladhar-pasoo/,Logistics and Supply Chain,Mumbai,501-1000,no
+Unbox Robotics,https://unboxrobotics.com/,https://www.linkedin.com/company/unbox-robotics,Automation Machinery Manufacturing,Pune,51-200,yes
+iThink Logistics,https://ithinklogistics.com/,https://www.linkedin.com/company/ithink-logistics,Logistics and Supply Chain,Mumbai,51-200,no
+Emiza,https://emizainc.com/,https://www.linkedin.com/company/emiza-supply-chain-services/,Logistics and Supply Chain,Mumbai,1000-5000,yes
+Smartr Logistics,https://smartr.in/,https://www.linkedin.com/company/smartrlogistics/,Logistics and Supply Chain,Mumbai,501-1000,yes

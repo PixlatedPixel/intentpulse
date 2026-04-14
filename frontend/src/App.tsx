@@ -1,5 +1,5 @@
-import React, { useState, useMemo, useEffect } from 'react';
-import { Search, LayoutGrid, List, Map, ChevronRight, Bell, FilterX } from 'lucide-react';
+import React, { useState, useMemo, useEffect, useRef } from 'react';
+import { Search, LayoutGrid, List, Map, ChevronRight, Bell, FilterX, Loader2 } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Navbar } from './components/Navbar';
 import { Sidebar } from './components/Sidebar';
@@ -10,14 +10,61 @@ import { DetailPanel } from './components/DetailPanel';
 import { Lead, FilterState } from './types';
 import { MOCK_LEADS } from './constants';
 
+// ---------------------------------------------------
+// BACKEND API URL
+// Change this if your backend runs on a different port
+// ---------------------------------------------------
+const API_BASE = 'http://localhost:8000';
+
 const App: React.FC = () => {
   const [viewMode, setViewMode] = useState<'table' | 'card'>('table');
   const [selectedLead, setSelectedLead] = useState<Lead | null>(null);
   const [isRefreshing, setIsRefreshing] = useState(false);
-  const [slackEnabled, setSlackEnabled] = useState(true);
-  const [lastRefreshed, setLastRefreshed] = useState('26 Mar 2026, 10:05 PM IST');
+  const [lastRefreshed, setLastRefreshed] = useState('Loading...');
   const [showToast, setShowToast] = useState(false);
   const [toastMessage, setToastMessage] = useState('');
+  const [leads, setLeads] = useState<Lead[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const fileInputRef = useRef<HTMLInputElement>(null);
+
+  // ---------------------------------------------------
+  // FETCH LEADS FROM BACKEND ON MOUNT
+  // Falls back to MOCK_LEADS if backend is unreachable
+  // ---------------------------------------------------
+  const fetchLeads = async () => {
+    try {
+      const res = await fetch(`${API_BASE}/leads`);
+      const data = await res.json();
+      if (data.leads && data.leads.length > 0) {
+        setLeads(data.leads);
+        setLastRefreshed(
+          new Date(data.last_updated).toLocaleString('en-IN', {
+            day: '2-digit',
+            month: 'short',
+            year: 'numeric',
+            hour: '2-digit',
+            minute: '2-digit',
+            hour12: true,
+          }) + ' IST'
+        );
+      } else {
+        // Backend returned empty — use mock data as fallback
+        setLeads(MOCK_LEADS);
+        setLastRefreshed('Using offline data');
+      }
+    } catch (err) {
+      // Backend unreachable — use mock data
+      console.warn('Backend unreachable, using mock data:', err);
+      setLeads(MOCK_LEADS);
+      setLastRefreshed('Backend offline — using demo data');
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchLeads();
+  }, []);
 
   const [filters, setFilters] = useState<FilterState>({
     search: '',
@@ -31,17 +78,24 @@ const App: React.FC = () => {
   });
 
   const filteredLeads = useMemo(() => {
-    return MOCK_LEADS.filter(lead => {
+    return leads.filter(lead => {
       const matchesSearch = lead.company.toLowerCase().includes(filters.search.toLowerCase()) ||
                           lead.industry.toLowerCase().includes(filters.search.toLowerCase());
       const matchesScore = lead.score >= filters.scoreRange[0] && lead.score <= filters.scoreRange[1];
       const matchesIndustry = filters.industries.length === 0 || filters.industries.includes(lead.industry);
       const matchesOpportunity = filters.opportunities.length === 0 || filters.opportunities.includes(lead.opportunity);
       const matchesSignals = filters.signals.length === 0 || lead.signals.some(s => filters.signals.includes(s));
+      const matchesCompanySize = filters.companySizes.length === 0 || filters.companySizes.some(sizeRange => {
+        if (sizeRange === '10-50') return lead.size >= 10 && lead.size <= 50;
+        if (sizeRange === '51-200') return lead.size >= 51 && lead.size <= 200;
+        if (sizeRange === '201-500') return lead.size >= 201 && lead.size <= 500;
+        if (sizeRange === '500+') return lead.size > 500;
+        return false;
+      });
       
-      return matchesSearch && matchesScore && matchesIndustry && matchesOpportunity && matchesSignals;
+      return matchesSearch && matchesScore && matchesIndustry && matchesOpportunity && matchesSignals && matchesCompanySize;
     });
-  }, [filters]);
+  }, [filters, leads]);
 
   const kpiData = useMemo(() => {
     const highIntent = filteredLeads.filter(l => l.score >= 80).length;
@@ -57,27 +111,133 @@ const App: React.FC = () => {
     };
   }, [filteredLeads]);
 
-  const handleRefresh = () => {
+  const handleRefresh = async () => {
     setIsRefreshing(true);
-    setTimeout(() => {
-      setIsRefreshing(false);
-      setLastRefreshed(new Date().toLocaleString('en-IN', { 
-        day: '2-digit', 
-        month: 'short', 
-        year: 'numeric', 
-        hour: '2-digit', 
-        minute: '2-digit', 
-        hour12: true 
-      }) + ' IST');
-      setToastMessage('12 new high-intent leads loaded');
+    try {
+      // Trigger backend re-processing
+      await fetch(`${API_BASE}/refresh`);
+      // Wait a moment for processing to start, then re-fetch leads
+      // The backend processes in the background, so we poll until done
+      const pollForResults = async (retries = 10) => {
+        for (let i = 0; i < retries; i++) {
+          await new Promise(r => setTimeout(r, 3000)); // Wait 3s between polls
+          const statusRes = await fetch(`${API_BASE}/status`);
+          const statusData = await statusRes.json();
+          if (!statusData.is_processing) {
+            // Processing finished — fetch updated leads
+            await fetchLeads();
+            setToastMessage(`${statusData.total_leads} leads refreshed from backend`);
+            setShowToast(true);
+            setTimeout(() => setShowToast(false), 3000);
+            return;
+          }
+        }
+        // Timeout — fetch whatever is available
+        await fetchLeads();
+        setToastMessage('Refresh took longer than expected — data may still be updating');
+        setShowToast(true);
+        setTimeout(() => setShowToast(false), 3000);
+      };
+      await pollForResults();
+    } catch (err) {
+      console.error('Refresh failed:', err);
+      setToastMessage('Refresh failed — backend may be offline');
       setShowToast(true);
       setTimeout(() => setShowToast(false), 3000);
-    }, 1500);
+    } finally {
+      setIsRefreshing(false);
+    }
+  };
+
+  const handleFileUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    const formData = new FormData();
+    formData.append('file', file);
+
+    setToastMessage('Uploading and merging new CSV...');
+    setShowToast(true);
+
+    try {
+      const res = await fetch(`${API_BASE}/upload`, {
+        method: 'POST',
+        body: formData,
+      });
+
+      const data = await res.json();
+      
+      if (!res.ok) {
+        throw new Error(data.detail || 'Upload failed');
+      }
+
+      setToastMessage(data.message);
+      setShowToast(true);
+      
+      // Start polling for the newly triggered processing
+      setIsRefreshing(true);
+      
+      const pollForResults = async (retries = 10) => {
+        for (let i = 0; i < retries; i++) {
+          await new Promise(r => setTimeout(r, 3000));
+          const statusRes = await fetch(`${API_BASE}/status`);
+          const statusData = await statusRes.json();
+          if (!statusData.is_processing) {
+            await fetchLeads();
+            setToastMessage(`${statusData.total_leads} leads refreshed after upload`);
+            setShowToast(true);
+            setTimeout(() => setShowToast(false), 3000);
+            return;
+          }
+        }
+        await fetchLeads();
+      };
+      
+      await pollForResults();
+      
+    } catch (err: any) {
+      console.error('Upload Error:', err);
+      setToastMessage(err.message || 'Error executing CSV upload');
+      setShowToast(true);
+      setTimeout(() => setShowToast(false), 3000);
+    } finally {
+      setIsRefreshing(false);
+      // reset file input
+      if (fileInputRef.current) {
+        fileInputRef.current.value = '';
+      }
+    }
   };
 
   const handleCopyPitch = (pitch: string) => {
     navigator.clipboard.writeText(pitch);
     setToastMessage('Pitch copied to clipboard!');
+    setShowToast(true);
+    setTimeout(() => setShowToast(false), 2000);
+  };
+
+  const handleDownloadCSV = () => {
+    if (filteredLeads.length === 0) {
+      setToastMessage('No leads to download');
+      setShowToast(true);
+      setTimeout(() => setShowToast(false), 2000);
+      return;
+    }
+    const headers = ['Company', 'Industry', 'Location', 'Score', 'Opportunity', 'Pitch Starter'];
+    const csvContent = [
+      headers.join(','),
+      ...filteredLeads.map(lead => `"${lead.company}","${lead.industry}","${lead.location}",${lead.score},"${lead.opportunity}","${lead.pitchStarter.replace(/"/g, '""')}"`)
+    ].join('\n');
+    
+    const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.setAttribute('download', 'intentpulse_leads.csv');
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    setToastMessage('Download started');
     setShowToast(true);
     setTimeout(() => setShowToast(false), 2000);
   };
@@ -97,13 +257,20 @@ const App: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-[#0F172A] text-slate-200 font-sans selection:bg-[#10B981]/30 selection:text-[#10B981]">
+      <input 
+        type="file" 
+        ref={fileInputRef} 
+        onChange={handleFileUpload} 
+        accept=".csv" 
+        className="hidden" 
+      />
       <Navbar
         lastRefreshed={lastRefreshed}
         onRefresh={handleRefresh}
         isRefreshing={isRefreshing}
-        newLeadsCount={12}
-        slackEnabled={slackEnabled}
-        onToggleSlack={() => setSlackEnabled(!slackEnabled)}
+        newLeadsCount={kpiData.highIntent}
+        onDownload={handleDownloadCSV}
+        onUpload={() => fileInputRef.current?.click()}
       />
 
       <div className="flex pt-16">
@@ -161,10 +328,7 @@ const App: React.FC = () => {
                 </button>
               </div>
               
-              <button className="flex items-center gap-2 px-4 py-2 bg-slate-800 text-slate-300 rounded-xl text-xs font-bold hover:bg-slate-700 transition-colors border border-slate-700">
-                <Map className="w-4 h-4" />
-                Map View
-              </button>
+
             </div>
           </div>
 

@@ -161,7 +161,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
         <div className="space-y-3">
           <label className="text-xs font-bold text-slate-500 uppercase tracking-wider">Company Size</label>
           <div className="flex flex-wrap gap-2">
-            {['10-50', '51-200', '201-500'].map(size => (
+            {['10-50', '51-200', '201-500', '500+'].map(size => (
               <button
                 key={size}
                 onClick={() => {

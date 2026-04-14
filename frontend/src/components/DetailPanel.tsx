@@ -1,5 +1,5 @@
 import React from 'react';
-import { X, ExternalLink, Linkedin, Mail, Copy, Archive, Target, CheckCircle2, Share2 } from 'lucide-react';
+import { X, ExternalLink, Linkedin, Copy, Archive, Target, CheckCircle2, Share2 } from 'lucide-react';
 import { Lead } from '../types';
 import { motion, AnimatePresence } from 'motion/react';
 import { COLORS } from '../constants';
@@ -139,15 +139,16 @@ export const DetailPanel: React.FC<DetailPanelProps> = ({
             </section>
 
             {/* Action Buttons */}
-            <div className="grid grid-cols-2 gap-4 pt-4">
-              <button className="flex items-center justify-center gap-2 py-3 bg-[#10B981] text-white rounded-xl font-bold text-sm hover:bg-[#0D9668] transition-colors shadow-lg shadow-[#10B981]/10">
+            <div className="pt-4">
+              <a
+                href={lead.linkedin || '#'}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-center gap-2 w-full py-3 bg-[#10B981] text-white rounded-xl font-bold text-sm hover:bg-[#0D9668] transition-colors shadow-lg shadow-[#10B981]/10"
+              >
                 <Linkedin className="w-4 h-4" />
-                LinkedIn Message
-              </button>
-              <button className="flex items-center justify-center gap-2 py-3 bg-slate-800 text-white rounded-xl font-bold text-sm hover:bg-slate-700 transition-colors border border-slate-700">
-                <Mail className="w-4 h-4" />
-                Cold Email
-              </button>
+                View on LinkedIn
+              </a>
             </div>
 
             <div className="flex items-center justify-between pt-6 border-t border-slate-800">

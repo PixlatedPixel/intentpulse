@@ -10,24 +10,34 @@ export const COLORS = {
 };
 
 export const INDUSTRIES = [
-  'Manufacturing',
-  'Logistics',
-  'Retail',
-  'SaaS',
+  'IT Services & Consulting',
+  'Software Development',
   'FinTech',
-  'Professional Services',
+  'Financial Services',
+  'Insurance',
+  'E-Commerce',
+  'Logistics',
+  'Business Consulting',
+  'Staffing & Recruiting',
+  'Health & Wellness',
   'Healthcare',
-  'E-commerce'
+  'Manufacturing',
+  'Automotive',
+  'Engineering & Construction',
+  'Consumer Goods',
+  'Advertising Technology',
+  'Entertainment',
+  'Food & Beverage',
+  'Conglomerate',
 ];
 
 export const LOCATIONS = [
-  'Mumbai, MH',
-  'Pune, MH',
-  'Nagpur, MH',
-  'Bangalore, KA',
-  'Delhi, DL',
-  'Hyderabad, TS',
-  'Chennai, TN'
+  'Mumbai',
+  'Pune',
+  'Nagpur',
+  'Nashik',
+  'Aurangabad',
+  'Bhiwandi',
 ];
 
 export const OPPORTUNITY_TYPES: OpportunityType[] = [
@@ -36,7 +46,7 @@ export const OPPORTUNITY_TYPES: OpportunityType[] = [
   'Custom Software / MVP',
   'Website / System Upgrade',
   'CRM / ERP Customization',
-  'Analytics Dashboard'
+  'Analytics Dashboard',
 ];
 
 export const SIGNAL_TYPES: SignalType[] = [
@@ -44,7 +54,11 @@ export const SIGNAL_TYPES: SignalType[] = [
   'Hiring Tech Roles',
   'Hiring Ops / Support / HR',
   'Scaling / Growth Announcements',
-  'Outdated Website'
+  'Outdated Website',
+  'Low Digital Presence',
+  'Needs Digital Presence',
+  'Digital Transformation',
+  'High-Growth Industry',
 ];
 
 export const MOCK_LEADS: Lead[] = [
