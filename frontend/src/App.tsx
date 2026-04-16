@@ -7,6 +7,7 @@ import { KPIStrip } from './components/KPIStrip';
 import { LeadTable } from './components/LeadTable';
 import { LeadCard } from './components/LeadCard';
 import { DetailPanel } from './components/DetailPanel';
+import { LoginScreen } from './components/LoginScreen';
 import { Lead, FilterState } from './types';
 import { MOCK_LEADS } from './constants';
 
@@ -17,6 +18,9 @@ import { MOCK_LEADS } from './constants';
 const API_BASE = 'http://localhost:8000';
 
 const App: React.FC = () => {
+  const [token, setToken] = useState<string | null>(localStorage.getItem('admin_token'));
+  const isAuthenticated = !!token;
+
   const [viewMode, setViewMode] = useState<'table' | 'card'>('table');
   const [selectedLead, setSelectedLead] = useState<Lead | null>(null);
   const [isRefreshing, setIsRefreshing] = useState(false);
@@ -32,8 +36,17 @@ const App: React.FC = () => {
   // Falls back to MOCK_LEADS if backend is unreachable
   // ---------------------------------------------------
   const fetchLeads = async () => {
+    if (!token) return;
     try {
-      const res = await fetch(`${API_BASE}/leads`);
+      const res = await fetch(`${API_BASE}/leads`, {
+        headers: { 'Authorization': `Bearer ${token}` }
+      });
+      
+      if (res.status === 401) {
+        handleLogout();
+        return;
+      }
+
       const data = await res.json();
       if (data.leads && data.leads.length > 0) {
         setLeads(data.leads);
@@ -63,8 +76,10 @@ const App: React.FC = () => {
   };
 
   useEffect(() => {
-    fetchLeads();
-  }, []);
+    if (isAuthenticated) {
+      fetchLeads();
+    }
+  }, [isAuthenticated, token]);
 
   const [filters, setFilters] = useState<FilterState>({
     search: '',
@@ -112,10 +127,17 @@ const App: React.FC = () => {
   }, [filteredLeads]);
 
   const handleRefresh = async () => {
+    if (!token) return;
     setIsRefreshing(true);
     try {
       // Trigger backend re-processing
-      await fetch(`${API_BASE}/refresh`);
+      const refreshRes = await fetch(`${API_BASE}/refresh`, {
+        headers: { 'Authorization': `Bearer ${token}` }
+      });
+      if (refreshRes.status === 401) {
+        handleLogout();
+        return;
+      }
       // Wait a moment for processing to start, then re-fetch leads
       // The backend processes in the background, so we poll until done
       const pollForResults = async (retries = 10) => {
@@ -254,6 +276,19 @@ const App: React.FC = () => {
       dateRange: '30',
     });
   };
+  const handleLogin = (newToken: string) => {
+    localStorage.setItem('admin_token', newToken);
+    setToken(newToken);
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem('admin_token');
+    setToken(null);
+  };
+
+  if (!isAuthenticated) {
+    return <LoginScreen onLogin={handleLogin} />;
+  }
 
   return (
     <div className="min-h-screen bg-[#0F172A] text-slate-200 font-sans selection:bg-[#10B981]/30 selection:text-[#10B981]">
@@ -271,6 +306,7 @@ const App: React.FC = () => {
         newLeadsCount={kpiData.highIntent}
         onDownload={handleDownloadCSV}
         onUpload={() => fileInputRef.current?.click()}
+        onLogout={handleLogout}
       />
 
       <div className="flex pt-16">

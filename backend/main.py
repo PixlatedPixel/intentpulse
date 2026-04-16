@@ -26,12 +26,14 @@ import threading
 from datetime import datetime
 from contextlib import asynccontextmanager
 
-from fastapi import FastAPI, BackgroundTasks, UploadFile, File, HTTPException
+from pydantic import BaseModel
+from fastapi import FastAPI, BackgroundTasks, UploadFile, File, HTTPException, Depends
 from fastapi.middleware.cors import CORSMiddleware
 from dotenv import load_dotenv
 
 from processor import process_csv, merge_and_save_upload
 from scheduler import start_scheduler, get_scheduler_status
+from auth import verify_password, create_access_token, verify_token, ADMIN_USERNAME
 
 # Load environment variables (.env file)
 load_dotenv()
@@ -134,8 +136,24 @@ def health_check():
     }
 
 
+class LoginRequest(BaseModel):
+    username: str
+    password: str
+
+@app.post("/api/login")
+def login(request: LoginRequest):
+    """
+    Validates admin credentials and issues a JWT token.
+    """
+    if request.username != ADMIN_USERNAME or not verify_password(request.password):
+        raise HTTPException(status_code=401, detail="Invalid username or password")
+    
+    token = create_access_token()
+    return {"token": token, "username": ADMIN_USERNAME}
+
+
 @app.get("/leads")
-def get_leads():
+def get_leads(admin: str = Depends(verify_token)):
     """
     Returns all processed leads as a JSON array.
     
@@ -151,7 +169,7 @@ def get_leads():
 
 
 @app.get("/refresh")
-def refresh_leads(background_tasks: BackgroundTasks):
+def refresh_leads(background_tasks: BackgroundTasks, admin: str = Depends(verify_token)):
     """
     Manually triggers CSV re-processing.
     
@@ -173,7 +191,7 @@ def refresh_leads(background_tasks: BackgroundTasks):
 
 
 @app.post("/upload")
-async def upload_leads_csv(background_tasks: BackgroundTasks, file: UploadFile = File(...)):
+async def upload_leads_csv(background_tasks: BackgroundTasks, file: UploadFile = File(...), admin: str = Depends(verify_token)):
     """
     Accepts a custom CSV, merges it into the local database, and starts processing.
     """
