@@ -1,5 +1,5 @@
 import React from 'react';
-import { X, ExternalLink, Linkedin, Copy, Archive, Target, CheckCircle2, Share2 } from 'lucide-react';
+import { X, ExternalLink, Linkedin, Copy, Target } from 'lucide-react';
 import { Lead } from '../types';
 import { motion, AnimatePresence } from 'motion/react';
 import { COLORS } from '../constants';
@@ -151,22 +151,6 @@ export const DetailPanel: React.FC<DetailPanelProps> = ({
               </a>
             </div>
 
-            <div className="flex items-center justify-between pt-6 border-t border-slate-800">
-              <div className="flex items-center gap-4">
-                <button className="flex items-center gap-2 text-xs font-bold text-slate-500 hover:text-white transition-colors">
-                  <Archive className="w-4 h-4" />
-                  Archive
-                </button>
-                <button className="flex items-center gap-2 text-xs font-bold text-slate-500 hover:text-white transition-colors">
-                  <Share2 className="w-4 h-4" />
-                  Move to CRM
-                </button>
-              </div>
-              <button className="flex items-center gap-2 text-xs font-bold text-[#10B981] bg-[#10B981]/10 px-3 py-1.5 rounded-lg border border-[#10B981]/20">
-                <CheckCircle2 className="w-4 h-4" />
-                Mark as Contacted
-              </button>
-            </div>
           </div>
         </motion.div>
       </motion.div>
